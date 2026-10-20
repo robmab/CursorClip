@@ -376,6 +376,8 @@
   // Que la página no se entere de los clics mientras eliges. El arrastre va con pointer*: al cancelar
   // pointerdown el navegador ya no manda mousedown/mousemove/mouseup con el botón pulsado
   const block = (e) => {
+    // Un atajo de ratón deja pasar su pointerdown: cancelado, no llegaría el mousedown con el que se repite para salir
+    if (e.type === 'pointerdown' && ['html', 'full'].some((k) => matchesMouse(e, settings[k]))) return;
     e.preventDefault();
     e.stopImmediatePropagation();
     if (e.button !== 0) return;
