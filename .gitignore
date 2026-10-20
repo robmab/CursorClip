@@ -11,6 +11,9 @@ Desktop.ini
 *.crx
 *.pem
 
+# Python (scripts de .github)
+__pycache__/
+
 # Logs y temporales
 *.log
 *.tmp

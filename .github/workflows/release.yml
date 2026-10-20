@@ -1,0 +1,47 @@
+# Checks a published release and attaches the extension as a .zip: the manifest version must
+# match the tag, and the extension must pass the structure checks at that tag. Runs when a
+# release is published, or by hand for an existing release (Actions > Release > Run workflow).
+name: Release
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Tag of the existing release to check (e.g. v1.19)
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      TAG: ${{ github.event.release.tag_name || inputs.tag }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ env.TAG }}
+      - name: Manifest version matches the tag
+        run: |
+          v="$(python3 -c 'import json; print(json.load(open("copiar-elemento/manifest.json"))["version"])')"
+          if [ "v$v" != "$TAG" ]; then
+            echo "::error file=copiar-elemento/manifest.json::version is $v but the release tag is $TAG"
+            exit 1
+          fi
+          echo "Manifest version $v matches $TAG" >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Structure and links
+        run: python .github/scripts/validate.py
+      - name: Attach the extension as a .zip
+        run: |
+          cd copiar-elemento
+          zip -r "../cursorclip-$TAG.zip" . -x '*.DS_Store'
+          cd ..
+          gh release upload "$TAG" "cursorclip-$TAG.zip" --clobber
+          echo "Attached cursorclip-$TAG.zip" >> "$GITHUB_STEP_SUMMARY"

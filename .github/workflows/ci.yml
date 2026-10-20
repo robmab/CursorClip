@@ -1,0 +1,46 @@
+# Checks that the extension is well-formed and that the native helper works on each system.
+# Standard library and system tools only, no secrets.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  structure:
+    name: Structure, links and syntax
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Validate manifest, helper manifest, cursors, SVG, README links and .sh line endings
+        run: python .github/scripts/validate.py
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+      - name: JavaScript syntax
+        run: for f in copiar-elemento/*.js; do node --check "$f"; done
+      - name: Shell syntax
+        run: for f in copiar-elemento/*.sh copiar-elemento/native/*.sh; do bash -n "$f"; done
+
+  helper:
+    name: Native helper (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Talk to the helper like Chrome (ping, save, numbering, UTF-8, history of 50)
+        run: python .github/scripts/test_helper.py
