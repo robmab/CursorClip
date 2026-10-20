@@ -407,8 +407,8 @@
       const name = fileNameOf(el);
       const res = await chrome.runtime.sendMessage({ type: 'save', name, text }).catch((e) => ({ error: e.message }));
       if (res && res.path) {
-        // Con el ayudante el fichero ya está en el portapapeles; sin él, se copia la mención
-        const ok = res.native ? true : await copyText(`@"${res.path}" `);
+        // Con el ayudante el fichero ya está en el portapapeles; si no (o no ha podido ponerlo), se copia la mención
+        const ok = res.native && res.clipboard ? true : await copyText(`@"${res.path}" `);
         toast(ok ? `Copiado como fichero ${name}${extra}` : 'No se ha podido copiar', ok);
         return;
       }

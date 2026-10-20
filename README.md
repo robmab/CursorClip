@@ -50,12 +50,20 @@ Compared with the element pickers in VS Code's integrated browser and in Claude,
 
 1. Open `chrome://extensions`, turn on **Developer mode** and click **Load unpacked**.
 2. Select the [`copiar-elemento/`](copiar-elemento) folder. The options page opens by itself.
-3. *(Optional, Windows)* Run [`install.bat`](copiar-elemento/install.bat) from that folder. It registers the **native helper** for Chrome and Brave, for your user only, without admin rights. Back in the options page, click **Volver a comprobar**.
+3. *(Optional)* Register the **native helper** for your user only, without admin rights and without installing anything else. Then, back in the options page, click **Volver a comprobar**.
 
-**With the helper**, each copy is saved as a hidden `.md` in `%TEMP%\copiar-elemento\` and put on the clipboard **as a real file**, so apps like Claude or DeepSeek attach it when you paste.
-**Without it**, the `.md` goes to `Downloads\copiar-elemento\` and the clipboard gets `@"<path>"`, which Claude also resolves into the file.
+   | System | Run | Helper | Clipboard as a file |
+   |---|---|---|---|
+   | Windows | [`install.bat`](copiar-elemento/install.bat) (double click) | PowerShell | Always |
+   | macOS | `./install.sh` in a terminal | bash + `osascript` | Always |
+   | Linux | `./install.sh` in a terminal | bash | With `wl-copy` or `xclip`; otherwise the `@"<path>"` is copied |
 
-Run [`uninstall.bat`](copiar-elemento/uninstall.bat) to remove the helper. If you move the folder, run `install.bat` again.
+   The scripts register it for Chrome, Chromium, Brave and Edge.
+
+**With the helper**, each copy is saved as a hidden `.md` in your temp folder (`%TEMP%\copiar-elemento\` on Windows, `$TMPDIR/.cursorclip/` on macOS/Linux) and put on the clipboard **as a real file**, so apps like Claude or DeepSeek attach it when you paste.
+**Without it**, the `.md` goes to `Downloads/copiar-elemento/` and the clipboard gets `@"<path>"`, which Claude also resolves into the file.
+
+To remove the helper run [`uninstall.bat`](copiar-elemento/uninstall.bat) or [`uninstall.sh`](copiar-elemento/uninstall.sh). If you move the folder, run the install script again.
 
 ## Options
 

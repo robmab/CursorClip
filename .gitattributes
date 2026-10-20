@@ -1,4 +1,7 @@
 * text=auto
 # cmd necesita CRLF para ejecutar bien los .bat
 *.bat text eol=crlf
+# bash en macOS/Linux falla con CRLF ("\r: command not found")
+*.sh text eol=lf
 *.png binary
+*.webp binary

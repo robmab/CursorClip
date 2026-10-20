@@ -28,7 +28,7 @@ const cursorIdOf = (id) => (CURSORS.some((c) => c.id === id) ? id : '1');
 // Toda la configuración guardada; output: 'file' copia el .md como fichero (o @"ruta" sin ayudante), 'text' el contenido
 const SETTINGS_DEFAULTS = { ...SHORTCUT_DEFAULTS, output: 'file', cursor: '1' };
 
-// Ayudante nativo (native/host.json), registrado con install.bat
+// Ayudante nativo, registrado con install.bat (Windows) o install.sh (macOS/Linux)
 const NATIVE_HOST = 'com.copiar_elemento.helper';
 
 const KEY_LABELS = { ArrowUp: '↑', ArrowDown: '↓', ArrowLeft: '←', ArrowRight: '→', Space: 'Espacio', Backquote: 'º' };

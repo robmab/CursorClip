@@ -45,7 +45,9 @@ try {
   $path = Join-Path $dir $name
   for ($n = 2; [IO.File]::Exists($path); $n++) { $path = Join-Path $dir "${base}_$n.md" }
 
-  [IO.File]::WriteAllText($path, [string]$msg.text, (New-Object Text.UTF8Encoding $false))
+  # La extensión manda el texto en base64 (b64); text queda por compatibilidad
+  $text = if ($msg.b64) { [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String([string]$msg.b64)) } else { [string]$msg.text }
+  [IO.File]::WriteAllText($path, $text, (New-Object Text.UTF8Encoding $false))
   [IO.File]::SetAttributes($path, [IO.FileAttributes]::Hidden)
 
   # Se guardan los últimos $MaxFiles; los más antiguos fuera (con -Force para ver los ocultos)
@@ -63,7 +65,7 @@ try {
     catch { if ($i -ge 4) { throw }; Start-Sleep -Milliseconds 100 }
   }
 
-  Send-Message @{ ok = $true; path = $path }
+  Send-Message @{ ok = $true; path = $path; clipboard = $true }
 } catch {
   Send-Message @{ ok = $false; error = $_.Exception.Message }
 }

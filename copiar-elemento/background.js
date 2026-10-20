@@ -25,9 +25,17 @@ chrome.action.onClicked.addListener(async (tab) => {
   }
 });
 
+// El texto viaja en base64 (UTF-8): así el ayudante de bash no tiene que desescapar JSON
+const toBase64 = (text) => {
+  const bytes = new TextEncoder().encode(text);
+  let bin = '';
+  for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+  return btoa(bin);
+};
+
 // null si el ayudante no está instalado o ha fallado
 const saveNative = (name, text) => new Promise((resolve) => {
-  chrome.runtime.sendNativeMessage(NATIVE_HOST, { type: 'save', name, text }, (res) => {
+  chrome.runtime.sendNativeMessage(NATIVE_HOST, { type: 'save', name, b64: toBase64(text) }, (res) => {
     resolve(chrome.runtime.lastError || !res || !res.ok ? null : res);
   });
 });
@@ -46,7 +54,8 @@ const waitComplete = (id) => new Promise((resolve, reject) => {
 
 const saveElement = async ({ name, text }) => {
   const native = await saveNative(name, text);
-  if (native) return { path: native.path, native: true };
+  // clipboard: false si el ayudante no ha podido poner el fichero en el portapapeles (Linux sin wl-copy ni xclip)
+  if (native) return { path: native.path, native: true, clipboard: native.clipboard !== false };
   return saveToDownloads({ name, text });
 };
 
