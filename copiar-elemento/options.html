@@ -35,6 +35,7 @@
     .actions { display: flex; gap: 12px; align-items: center; margin-top: 16px; flex-wrap: wrap; }
     button { padding: 7px 14px; border: 1px solid var(--border); border-radius: 6px; background: var(--card); color: var(--text); font: inherit; cursor: pointer; }
     button:hover { border-color: var(--accent); }
+    button:disabled { opacity: .6; cursor: default; border-color: var(--border); }
     #status { font-size: 13px; min-height: 1.5em; }
     #status.ok { color: var(--ok); }
     #status.warn { color: var(--warn); }
@@ -121,6 +122,9 @@
       <p id="update">Checking for a new version…</p>
       <label class="check"><input type="checkbox" id="check-updates">
         <span>Check GitHub for a new version once a day. It only asks for the latest release; nothing about you or your pages is sent.</span></label>
+      <div class="actions">
+        <button id="check-now">Check now</button>
+      </div>
     </section>
 
     <div class="actions">
@@ -129,7 +133,7 @@
     </div>
 
     <p class="help">
-      While picking: click or <kbd>Enter</kbd> copies, drag selects the common parent, <kbd>↑</kbd>/<kbd>↓</kbd> go to the parent or child, <kbd>Esc</kbd> cancels.<br>
+      While picking: click or <kbd>Enter</kbd> copies, drag selects the common parent, <kbd>↑</kbd>/<kbd>↓</kbd> go to the parent or child, <kbd>Esc</kbd> or the same shortcut again cancels, the other shortcut switches mode.<br>
       Changes apply instantly in open tabs.
     </p>
   </main>

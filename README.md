@@ -40,7 +40,7 @@ Compared with the element pickers in VS Code's integrated browser and in Claude,
 2. **Choose the element**:
    - **Click** it, or press `Enter`.
    - **Drag** across several things: the highlight climbs to their **common parent**, and that is what gets copied.
-   - `↑` / `↓` move to the parent / first child. `Esc` cancels.
+   - `↑` / `↓` move to the parent / first child. `Esc`, the same shortcut again or another click on the toolbar icon cancels; the other shortcut switches mode.
 3. **Paste** with `Ctrl+V`. A green toast confirms what was copied.
 
 `Ctrl+C` stays a normal copy whenever you have text selected or you are typing in a field. Clicks never reach the page while you are picking.
@@ -82,7 +82,7 @@ Changes apply instantly in open tabs.
 
 Everything happens on your computer: there is no server and no analytics. The helper only writes the `.md` file and sets the clipboard.
 
-The only network request is the update check: once a day the extension asks GitHub for the latest release of this repo, and if it's newer than yours the toolbar icon shows a small `↑` and the options page links to it. Nothing about you or the pages you visit is sent, and you can turn it off in the options page.
+The only network request is the update check: once a day the extension asks GitHub for the latest release of this repo, and if it's newer than yours the toolbar icon shows a small `↑` and the options page links to it. Nothing about you or the pages you visit is sent, and you can turn it off in the options page and use **Check now** there whenever you want.
 
 | Permission | Why |
 |---|---|

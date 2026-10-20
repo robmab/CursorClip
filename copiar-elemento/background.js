@@ -116,19 +116,23 @@ const isNewer = (a, b) => {
   return false;
 };
 
-// update: { checked, version, url }; version es null mientras el repo no tenga ninguna release
+// update: { checked, version, url }; version es null mientras el repo no tenga ninguna release.
+// El aviso del icono solo con las comprobaciones activadas; Opciones recibe available igualmente
 const showUpdate = (update, enabled) => {
-  const v = enabled && update.version && isNewer(update.version, VERSION) ? update.version : null;
-  chrome.action.setBadgeText({ text: v ? '↑' : '' });
+  const v = update.version && isNewer(update.version, VERSION) ? update.version : null;
+  const badge = enabled && v;
+  chrome.action.setBadgeText({ text: badge ? '↑' : '' });
   chrome.action.setBadgeBackgroundColor({ color: '#1f6feb' });
-  chrome.action.setTitle({ title: v ? `${TITLE}\n\nVersion ${v} available: right click → Options` : TITLE });
+  chrome.action.setTitle({ title: badge ? `${TITLE}\n\nVersion ${v} available: right click → Options` : TITLE });
   return { ...update, available: !!v, current: VERSION, enabled };
 };
 
-const checkUpdate = async (force) => {
+// manual: el botón "Check now" de Opciones, que mira aunque las comprobaciones estén desactivadas
+const checkUpdate = async (force, manual) => {
   const { checkUpdates } = await chrome.storage.sync.get({ checkUpdates: true });
   let { update = {} } = await chrome.storage.local.get('update');
-  if (checkUpdates && (force || Date.now() - (update.checked || 0) > UPDATE_EVERY)) {
+  let failed = false;
+  if (manual || (checkUpdates && (force || Date.now() - (update.checked || 0) > UPDATE_EVERY))) {
     try {
       const res = await fetch(`https://api.github.com/repos/${REPO}/releases/latest`, { headers: { Accept: 'application/vnd.github+json' } });
       // 404 = aún no hay releases: no es un error, simplemente no hay nada que avisar
@@ -138,9 +142,10 @@ const checkUpdate = async (force) => {
       await chrome.storage.local.set({ update });
     } catch (e) {
       // Sin red o GitHub caído: se queda lo último que se supo y se reintenta en la próxima
+      failed = true;
     }
   }
-  return showUpdate(update, checkUpdates);
+  return { ...showUpdate(update, checkUpdates), manual: !!manual, failed };
 };
 
 chrome.runtime.onStartup.addListener(() => checkUpdate());
@@ -150,7 +155,7 @@ checkUpdate();
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   if (!msg) return;
   if (msg.type === 'checkUpdate') {
-    checkUpdate(true).then(sendResponse);
+    checkUpdate(true, msg.manual).then(sendResponse);
     return true;
   }
   if (msg.type !== 'save') return;

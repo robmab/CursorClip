@@ -33,10 +33,15 @@
   const updateText = document.getElementById('update');
   const checkUpdatesBox = document.getElementById('check-updates');
 
+  const checkNow = document.getElementById('check-now');
+
   const showUpdate = (u) => {
     updateText.className = '';
-    if (!u || !u.enabled) {
-      updateText.textContent = `You have version ${chrome.runtime.getManifest().version}. Update checks are off.`;
+    checkNow.disabled = false;
+    if (u && u.manual && u.failed) {
+      updateText.textContent = "Couldn't reach GitHub. Check your connection and try again.";
+    } else if (!u || (!u.enabled && !u.manual && !u.available)) {
+      updateText.textContent = `You have version ${chrome.runtime.getManifest().version}. Automatic checks are off; use Check now whenever you want.`;
     } else if (u.available) {
       updateText.className = 'update-new';
       updateText.textContent = `Version ${u.version} is available (you have ${u.current}). `;
@@ -52,7 +57,14 @@
     }
   };
 
-  const checkUpdate = () => chrome.runtime.sendMessage({ type: 'checkUpdate' }, showUpdate);
+  const checkUpdate = (manual) => chrome.runtime.sendMessage({ type: 'checkUpdate', manual }, showUpdate);
+
+  checkNow.addEventListener('click', () => {
+    checkNow.disabled = true;
+    updateText.className = '';
+    updateText.textContent = 'Checking GitHub…';
+    checkUpdate(true);
+  });
 
   checkUpdatesBox.addEventListener('change', () => {
     config.checkUpdates = checkUpdatesBox.checked;

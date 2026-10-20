@@ -461,11 +461,17 @@
   const shouldYield = (m) => !mode && ((isBareKey(settings[m]) && inField())
     || (settings[m].respectSelection && (hasSelection() || inField())));
 
+  // El mismo atajo otra vez cancela (como Esc); el otro cambia de modo sin salir
+  const toggle = (m) => {
+    if (!mode) start(m);
+    else if (mode === m) stop();
+    else { mode = m; if (current) highlight(current); }
+  };
+
   const trigger = (e, m) => {
     e.preventDefault();
     e.stopImmediatePropagation();
-    if (!mode) start(m);
-    else { mode = m; if (current) highlight(current); }
+    toggle(m);
   };
 
   // Atajos de ratón; el botón que ha disparado se traga también al soltarlo (para que el lateral no vaya atrás)
@@ -485,12 +491,12 @@
     }, true);
   }
 
-  // Clic en el icono de la extensión (background.js): igual que pulsar el atajo
+  // Clic en el icono de la extensión (background.js): empieza a elegir y, si ya se estaba eligiendo, cancela
   if (globalThis.chrome && chrome.runtime && chrome.runtime.onMessage) {
     chrome.runtime.onMessage.addListener((msg) => {
       if (!msg || msg.type !== 'start') return;
-      if (!mode) start(msg.mode);
-      else { mode = msg.mode; if (current) highlight(current); }
+      if (mode) stop();
+      else start(msg.mode);
     });
   }
 
