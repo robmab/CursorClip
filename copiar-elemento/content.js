@@ -283,7 +283,8 @@
   const clipIcon = (ok) => {
     const svg = document.createElementNS(SVG_NS, 'svg');
     svg.setAttribute('viewBox', '0 0 20 32');
-    svg.style.cssText = 'display:block;flex:none;width:18px;height:28px;overflow:visible';
+    // Más alto que el aviso y anclado abajo: sobresale por arriba, como si lo sujetara
+    svg.style.cssText = 'position:absolute;left:8px;bottom:3px;display:block;width:28px;height:45px;overflow:visible';
     const add = (tag, attrs, css) => {
       const n = document.createElementNS(SVG_NS, tag);
       for (const k in attrs) n.setAttribute(k, attrs[k]);
@@ -304,15 +305,21 @@
     return svg;
   };
 
+  // Color del cursor elegido: el del resaltado y el del aviso cuando sale bien
+  const themeColor = () => {
+    const c = CURSORS.find((k) => k.id === cursorIdOf(settings.cursor));
+    return (c && c.color) || DEFAULT_COLOR;
+  };
+
   const toast = (msg, ok) => {
     const t = document.createElement('div');
     const text = document.createElement('span');
     text.textContent = msg;
     text.style.cssText = 'font:inherit;color:inherit';
     t.append(clipIcon(ok), text);
-    t.style.cssText = `position:fixed;z-index:${TOP};right:16px;bottom:16px;display:flex;align-items:center;gap:8px;`
-      + `padding:6px 12px 6px 9px;border-radius:6px;font:13px/1.4 system-ui,sans-serif;color:#fff;`
-      + `background:${ok ? '#198754' : '#dc3545'};box-shadow:0 2px 8px rgba(0,0,0,.3)`;
+    t.style.cssText = `position:fixed;z-index:${TOP};right:16px;bottom:16px;display:flex;align-items:center;`
+      + `padding:7px 12px 7px 44px;border-radius:6px;font:13px/1.4 system-ui,sans-serif;color:#fff;`
+      + `background:${ok ? themeColor() : '#dc3545'};box-shadow:0 2px 8px rgba(0,0,0,.3)`;
     document.documentElement.append(t);
     setTimeout(() => t.remove(), 2000);
   };
@@ -396,7 +403,7 @@
     mode = m;
     // Cursor elegido en opciones; si no carga (o es 'system'), la cruz del navegador. El resaltado va a juego
     const c = CURSORS.find((k) => k.id === cursorIdOf(settings.cursor) && k.id !== 'system');
-    const color = (c && c.color) || DEFAULT_COLOR;
+    const color = themeColor();
     box = document.createElement('div');
     box.style.cssText = `position:fixed;z-index:${TOP};pointer-events:none;background:${color}26;outline:2px solid ${color}`;
     rectBox = document.createElement('div');
