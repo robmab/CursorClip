@@ -56,7 +56,7 @@ Compared with the element pickers in VS Code's integrated browser and in Claude,
    |---|---|---|---|
    | Windows | [`install.bat`](copiar-elemento/install.bat) (double click) | PowerShell | Always |
    | macOS | `./install.sh` in a terminal | bash + `osascript` | Always |
-   | Linux | `./install.sh` in a terminal | bash | With `wl-copy` or `xclip`; otherwise the `@"<path>"` is copied |
+   | Linux | `./install.sh` in a terminal | bash | Optional: install `wl-clipboard` (Wayland) or `xclip` (X11) to paste it as a file; without them the `@"<path>"` is copied |
 
    The scripts register it for Chrome, Chromium, Brave and Edge.
 
