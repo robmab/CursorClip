@@ -4,8 +4,6 @@
 
 **CursorClip** is a Chrome extension that lets you point at any element on a web page and copy what an AI (or a teammate) needs to understand it: its HTML, the CSS that styles it — **with the file each rule comes from** — what it inherits from its parents, the CSS variables it uses and its final computed values. Paste it into Claude, Copilot, DeepSeek or any chat as a `.md` file or as plain text.
 
-> The extension UI and the copied labels are currently in Spanish.
-
 ---
 
 ## What it copies
@@ -50,7 +48,7 @@ Compared with the element pickers in VS Code's integrated browser and in Claude,
 
 1. Open `chrome://extensions`, turn on **Developer mode** and click **Load unpacked**.
 2. Select the [`copiar-elemento/`](copiar-elemento) folder. The options page opens by itself.
-3. *(Optional)* Register the **native helper** for your user only, without admin rights and without installing anything else. Then, back in the options page, click **Volver a comprobar**.
+3. *(Optional)* Register the **native helper** for your user only, without admin rights and without installing anything else. Then, back in the options page, click **Check again**.
 
    | System | Run | Helper | Clipboard as a file |
    |---|---|---|---|

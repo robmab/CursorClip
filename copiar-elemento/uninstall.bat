@@ -6,5 +6,5 @@ reg delete "HKCU\Software\Google\Chrome\NativeMessagingHosts\%HOST%" /f >nul 2>&
 reg delete "HKCU\Software\BraveSoftware\Brave-Browser\NativeMessagingHosts\%HOST%" /f >nul 2>&1
 if exist "%TEMP%\copiar-elemento" rmdir /s /q "%TEMP%\copiar-elemento"
 
-echo Ayudante desinstalado.
+echo Helper uninstalled.
 pause

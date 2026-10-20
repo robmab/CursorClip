@@ -83,7 +83,7 @@
 
   // Nombre de la hoja: el fichero si lo tiene; si no (p. ej. YouTube), dominio y ruta
   const sheetName = (sh) => {
-    if (!sh.href) return '<style> de la página';
+    if (!sh.href) return '<style> in the page';
     try {
       const u = new URL(sh.href);
       const last = u.pathname.split('/').pop();
@@ -162,7 +162,7 @@
   const variablesOf = (el, cssText) => {
     const names = [...new Set([...cssText.matchAll(/var\(\s*(--[\w-]+)/g)].map((m) => m[1]))];
     const cs = getComputedStyle(el);
-    return names.map((n) => `${n}: ${cs.getPropertyValue(n).trim() || '(sin valor)'};`);
+    return names.map((n) => `${n}: ${cs.getPropertyValue(n).trim() || '(no value)'};`);
   };
 
   const hasOwnText = (el) => [...el.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim());
@@ -217,20 +217,20 @@
       }
     };
     visit(root, 0);
-    if (full) lines.push('<!-- … sigue; elige un elemento más concreto para ver el resto -->');
+    if (full) lines.push('<!-- … continues; pick a more specific element to see the rest -->');
     return lines.join('\n');
   };
 
   const build = (el, withCss) => {
     let html = el.outerHTML;
     if (html.length > MAX_HTML) {
-      html = `<!-- HTML demasiado grande (${html.length.toLocaleString('es-ES')} caracteres): esquema de la estructura -->\n`
+      html = `<!-- HTML too large (${html.length.toLocaleString('en-US')} characters): structure outline -->\n`
         + outlineOf(el);
     }
     const r = el.getBoundingClientRect();
     const out = [
-      `**Elemento:** \`${selectorOf(el)}\` · ${Math.round(r.width)}×${Math.round(r.height)}`,
-      `**Página:** ${location.href.split('#')[0]}`,
+      `**Element:** \`${selectorOf(el)}\` · ${Math.round(r.width)}×${Math.round(r.height)}`,
+      `**Page:** ${location.href.split('#')[0]}`,
       '',
       FENCE + 'html', html, FENCE,
     ];
@@ -248,16 +248,16 @@
       }
       const parts = [...bySheet].map(([sheet, list]) => `/* ${sheet} */\n${list.join('\n')}`);
       const inherited = inheritedCss(hits, chain);
-      if (inherited.length) parts.push(`/* Heredado de los padres */\n${inherited.join('\n')}`);
+      if (inherited.length) parts.push(`/* Inherited from ancestors */\n${inherited.join('\n')}`);
       const vars = variablesOf(el, parts.join('\n'));
       if (vars.length) parts.push(`/* Variables */\n${vars.join('\n')}`);
 
-      out.push('', '**CSS que le aplica** (en orden de carga; a igual especificidad gana la última):');
-      out.push(FENCE + 'css', parts.join('\n\n') || '/* sin reglas */', FENCE);
-      if (unreadable) out.push(`_(${unreadable} hoja(s) de otro dominio no se han podido leer)_`);
+      out.push('', '**Applied CSS** (in load order; with equal specificity the last one wins):');
+      out.push(FENCE + 'css', parts.join('\n\n') || '/* no rules */', FENCE);
+      if (unreadable) out.push(`_(${unreadable} cross-origin stylesheet(s) could not be read)_`);
 
       const computed = computedCss(el);
-      if (computed.length) out.push('', '**Valores calculados** (sin los que están por defecto):', FENCE + 'css', computed.join('\n'), FENCE);
+      if (computed.length) out.push('', '**Computed values** (defaults left out):', FENCE + 'css', computed.join('\n'), FENCE);
     }
     return { text: out.join('\n'), rules };
   };
@@ -402,23 +402,23 @@
     const withCss = mode === 'full';
     stop();
     const { text, rules } = build(el, withCss);
-    const extra = withCss ? ` + ${rules} reglas CSS` : '';
+    const extra = withCss ? ` + ${rules} CSS rule${rules === 1 ? '' : 's'}` : '';
     if (settings.output === 'file' && globalThis.chrome && chrome.runtime && chrome.runtime.id) {
       const name = fileNameOf(el);
       const res = await chrome.runtime.sendMessage({ type: 'save', name, text }).catch((e) => ({ error: e.message }));
       if (res && res.path) {
         // Con el ayudante el fichero ya está en el portapapeles; si no (o no ha podido ponerlo), se copia la mención
         const ok = res.native && res.clipboard ? true : await copyText(`@"${res.path}" `);
-        toast(ok ? `Copiado como fichero ${name}${extra}` : 'No se ha podido copiar', ok);
+        toast(ok ? `Copied as file ${name}${extra}` : 'Could not copy', ok);
         return;
       }
       // Si no se ha podido guardar, que al menos quede el texto
       const ok = await copyText(text);
-      toast(`No se pudo guardar el fichero (${(res && res.error) || 'sin respuesta'})${ok ? '; copiado como texto' : ''}`, false);
+      toast(`Could not save the file (${(res && res.error) || 'no response'})${ok ? '; copied as text' : ''}`, false);
       return;
     }
     const ok = await copyText(text);
-    toast(ok ? `Copiado ${describe(el)}${extra}` : 'No se ha podido copiar', ok);
+    toast(ok ? `Copied ${describe(el)}${extra}` : 'Could not copy', ok);
   };
 
   const hasSelection = () => String(getSelection()).length > 0;

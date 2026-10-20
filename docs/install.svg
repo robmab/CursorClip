@@ -19,7 +19,7 @@
     <text x="335" y="60" font-size="13" font-weight="700" fill="#0550ae">2 · HELPER (OPTIONAL)</text>
     <rect x="335" y="76" width="210" height="62" rx="6" fill="#1f2328"/>
     <text x="347" y="98" font-size="12" fill="#7ee787" font-family="Consolas, monospace">&gt; install.bat</text>
-    <text x="347" y="118" font-size="12" fill="#c9d1d9" font-family="Consolas, monospace">Ayudante instalado</text>
+    <text x="347" y="118" font-size="12" fill="#c9d1d9" font-family="Consolas, monospace">Helper installed</text>
     <text x="335" y="166" font-size="12.5" fill="#0550ae">Windows only · current user,</text>
     <text x="335" y="182" font-size="12.5" fill="#0550ae">no admin rights needed</text>
 
@@ -28,10 +28,10 @@
     <text x="620" y="60" font-size="13" font-weight="700" fill="#1f2328">3 · CHECK OPTIONS</text>
     <rect x="620" y="76" width="210" height="52" rx="6" fill="#ffffff" stroke="#d0d7de"/>
     <rect x="620" y="76" width="5" height="52" fill="#1a7f37"/>
-    <text x="636" y="98" font-size="12.5" fill="#1a7f37" font-weight="600">✓ Ayudante instalado</text>
+    <text x="636" y="98" font-size="12.5" fill="#1a7f37" font-weight="600">✓ Helper installed</text>
     <text x="636" y="116" font-size="11.5" fill="#57606a">pastes as a file attachment</text>
     <text x="620" y="166" font-size="12.5" fill="#57606a">Opens by itself on first install;</text>
-    <text x="620" y="182" font-size="12.5" fill="#57606a">"Volver a comprobar" re-checks</text>
+    <text x="620" y="182" font-size="12.5" fill="#57606a">"Check again" re-checks it</text>
 
     <path d="M 284 110 H 310" stroke="#8c959f" stroke-width="2" marker-end="url(#a)"/>
     <path d="M 569 110 H 595" stroke="#8c959f" stroke-width="2" marker-end="url(#a)"/>

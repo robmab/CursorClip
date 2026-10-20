@@ -1,6 +1,6 @@
 {
   "name": "com.copiar_elemento.helper",
-  "description": "Ayudante de CursorClip: guarda el .md y lo deja en el portapapeles como fichero",
+  "description": "CursorClip helper: saves the .md and puts it on the clipboard as a file",
   "path": "host.bat",
   "type": "stdio",
   "allowed_origins": ["chrome-extension://koljcdeiookajoifckibpnhioidpgapo/"]

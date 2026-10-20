@@ -12,11 +12,11 @@ case "$(uname -s)" in
     BASE="${XDG_CONFIG_HOME:-$HOME/.config}"
     BROWSERS="google-chrome|chromium|BraveSoftware/Brave-Browser|microsoft-edge"
     ;;
-  *) echo "Sistema no soportado: usa uninstall.bat en Windows"; exit 1 ;;
+  *) echo "Unsupported system: use uninstall.bat on Windows"; exit 1 ;;
 esac
 
 IFS='|'
 for b in $BROWSERS; do rm -f "$BASE/$b/NativeMessagingHosts/$HOST.json"; done
 TMP="${TMPDIR:-/tmp}"
 rm -rf "${TMP%/}/.cursorclip"
-echo "Ayudante desinstalado."
+echo "Helper uninstalled."

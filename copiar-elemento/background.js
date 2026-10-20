@@ -45,7 +45,7 @@ const waitComplete = (id) => new Promise((resolve, reject) => {
   const check = (delta) => {
     if (delta.id !== id || !delta.state) return;
     if (delta.state.current === 'complete') done(resolve);
-    else if (delta.state.current === 'interrupted') done(reject, new Error('descarga interrumpida'));
+    else if (delta.state.current === 'interrupted') done(reject, new Error('download interrupted'));
   };
   chrome.downloads.onChanged.addListener(check);
   // Puede haber terminado antes de empezar a escuchar

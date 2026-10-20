@@ -39,7 +39,7 @@
     radio.value = c.id;
     opt.append(radio);
     if (c.id === 'system') {
-      opt.insertAdjacentHTML('beforeend', '<span class="cross">+</span><span>Sistema</span>');
+      opt.insertAdjacentHTML('beforeend', '<span class="cross">+</span><span>System</span>');
       opt.style.cursor = 'crosshair';
     } else {
       const img = document.createElement('img');
@@ -52,12 +52,12 @@
     opt.style.boxShadow = `inset 0 -4px 0 ${c.color || DEFAULT_COLOR}`;
     radio.addEventListener('change', () => {
       config.cursor = c.id;
-      save(c.id === 'system' ? 'Guardado: cruz del sistema' : `Guardado: cursor ${c.id}`);
+      save(c.id === 'system' ? 'Saved: system crosshair' : `Saved: cursor ${c.id}`);
     });
     cursorsBox.append(opt);
   }
 
-  const save = (msg = 'Guardado', kind = 'ok') => chrome.storage.sync.set(config, () => say(msg, kind));
+  const save = (msg = 'Saved', kind = 'ok') => chrome.storage.sync.set(config, () => say(msg, kind));
 
   // Teclas que usa el propio selector mientras eliges
   const PICKER_KEYS = ['Enter', 'ArrowUp', 'ArrowDown'];
@@ -65,21 +65,21 @@
   const record = (k, input, s) => {
     const name = formatShortcut(s);
     if (name === formatShortcut(config[OTHER[k]])) {
-      say(`${name} ya lo usa la otra acción`, 'error');
+      say(`${name} is already used by the other action`, 'error');
       return;
     }
     config[k] = { ...config[k], ...s };
     input.blur();
-    if (RESERVED.includes(name)) save(`Guardado, pero ${name} lo usa Chrome y puede que la página no llegue a recibirlo`, 'warn');
-    else if (isBareKey(s)) save(`Guardado: ${name} (solo funciona fuera de los campos de texto)`, 'warn');
-    else save(`Guardado: ${name}`);
+    if (RESERVED.includes(name)) save(`Saved, but Chrome uses ${name} and the page may never receive it`, 'warn');
+    else if (isBareKey(s)) save(`Saved: ${name} (only works outside text fields)`, 'warn');
+    else save(`Saved: ${name}`);
   };
 
   const mods = (e) => ({ ctrl: e.ctrlKey, alt: e.altKey, shift: e.shiftKey, meta: e.metaKey });
 
   for (const input of document.querySelectorAll('[data-rec]')) {
     const k = input.dataset.rec;
-    input.addEventListener('focus', () => { input.value = 'Pulsa una tecla, combinación o botón del ratón…'; });
+    input.addEventListener('focus', () => { input.value = 'Press a key, a combination or a mouse button…'; });
     input.addEventListener('blur', render);
     input.addEventListener('keydown', (e) => {
       e.preventDefault();
@@ -87,7 +87,7 @@
       if (e.key === 'Escape' || e.key === 'Tab') { input.blur(); return; }
       const s = { ...mods(e), code: e.code, key: (e.key || '').toLowerCase(), button: null };
       if (isBareKey(s) && PICKER_KEYS.includes(e.key)) {
-        say(`${formatShortcut(s)} sola la usa el selector; combínala con Ctrl, Alt o Win`, 'error');
+        say(`${formatShortcut(s)} on its own is used by the picker; combine it with Ctrl, Alt or Win`, 'error');
         return;
       }
       record(k, input, s);
@@ -97,7 +97,7 @@
       if (document.activeElement !== input || e.button === 0) return;
       e.preventDefault();
       if (!MOUSE_LABELS[e.button]) {
-        say('El clic derecho no se puede asignar; usa el central o los laterales', 'error');
+        say("Right click can't be assigned; use the middle or side buttons", 'error');
         return;
       }
       record(k, input, { ...mods(e), code: '', key: '', button: e.button });
@@ -118,14 +118,14 @@
   for (const r of document.querySelectorAll('[name="output"]')) {
     r.addEventListener('change', () => {
       config.output = r.value;
-      save(r.value === 'file' ? 'Guardado: se copiará como fichero' : 'Guardado: se copiará como texto');
+      save(r.value === 'file' ? 'Saved: copies as a file' : 'Saved: copies as text');
     });
   }
 
   document.getElementById('reset').addEventListener('click', () => {
     config = structuredClone(SETTINGS_DEFAULTS);
     render();
-    chrome.storage.sync.clear(() => save('Restaurado todo por defecto'));
+    chrome.storage.sync.clear(() => save('Everything reset to defaults'));
   });
 
   chrome.storage.sync.get(SETTINGS_DEFAULTS, (stored) => { config = stored; render(); });
@@ -138,13 +138,13 @@
   const card = document.getElementById('helper-card');
 
   const checkHelper = () => {
-    helper.textContent = 'Comprobando el ayudante…';
+    helper.textContent = 'Checking the helper…';
     chrome.runtime.sendNativeMessage(NATIVE_HOST, { type: 'ping' }, (res) => {
       const ok = !chrome.runtime.lastError && res && res.ok;
       card.classList.toggle('ok', !!ok);
       helper.textContent = ok
-        ? '✓ Ayudante instalado: el .md se guarda oculto en Temp y se pega como fichero adjunto.'
-        : 'Ayudante sin instalar: funciona igual, pero se guarda en Descargas\\copiar-elemento y se copia @"ruta" en vez del fichero.';
+        ? '✓ Helper installed: the .md is saved hidden in your temp folder and pastes as a file attachment.'
+        : 'Helper not installed: everything still works, but the .md goes to Downloads/copiar-elemento and @"path" is copied instead of the file.';
       steps.hidden = ok;
       openFolder.hidden = ok;
     });

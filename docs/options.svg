@@ -10,7 +10,7 @@
     <text x="44" y="105" font-size="14" fill="#1f2328" font-family="Consolas, monospace">Ctrl+C</text>
     <text x="30" y="140" font-size="12.5" fill="#57606a">HTML only</text>
     <rect x="30" y="148" width="220" height="32" rx="6" fill="#f6f8fa" stroke="#d0d7de"/>
-    <text x="44" y="169" font-size="14" fill="#1f2328" font-family="Consolas, monospace">Ctrl+Ratón atrás</text>
+    <text x="44" y="169" font-size="14" fill="#1f2328" font-family="Consolas, monospace">Ctrl+Mouse back</text>
     <text x="30" y="206" font-size="12" fill="#57606a">Keys, combos, single keys</text>
     <text x="30" y="222" font-size="12" fill="#57606a">or middle / side mouse buttons</text>
 

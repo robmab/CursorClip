@@ -31,10 +31,10 @@ const SETTINGS_DEFAULTS = { ...SHORTCUT_DEFAULTS, output: 'file', cursor: '1' };
 // Ayudante nativo, registrado con install.bat (Windows) o install.sh (macOS/Linux)
 const NATIVE_HOST = 'com.copiar_elemento.helper';
 
-const KEY_LABELS = { ArrowUp: '↑', ArrowDown: '↓', ArrowLeft: '←', ArrowRight: '→', Space: 'Espacio', Backquote: 'º' };
+const KEY_LABELS = { ArrowUp: '↑', ArrowDown: '↓', ArrowLeft: '←', ArrowRight: '→', Space: 'Space', Backquote: 'º' };
 
 // Botones del ratón que se pueden asignar (event.button); el izquierdo y el derecho no
-const MOUSE_LABELS = { 1: 'Ratón central', 3: 'Ratón atrás', 4: 'Ratón adelante' };
+const MOUSE_LABELS = { 1: 'Middle mouse', 3: 'Mouse back', 4: 'Mouse forward' };
 
 // Un atajo es de teclado (code/key) o de ratón (button)
 const isMouseShortcut = (s) => s.button != null;
@@ -51,7 +51,7 @@ const formatShortcut = (s) => {
   if (s.shift) parts.push('Shift');
   if (s.meta) parts.push('Win');
   if (isMouseShortcut(s)) {
-    parts.push(MOUSE_LABELS[s.button] || `Ratón ${s.button}`);
+    parts.push(MOUSE_LABELS[s.button] || `Mouse ${s.button}`);
     return parts.join('+');
   }
   const code = s.code || '';

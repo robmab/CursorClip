@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CursorClip · Opciones</title>
+  <title>CursorClip · Options</title>
   <style>
     :root {
       --bg: #f6f7f9; --card: #fff; --text: #1f2328; --muted: #656d76; --border: #d0d7de;
@@ -67,61 +67,61 @@
 <body>
   <main>
     <h1>CursorClip</h1>
-    <p class="lead">Haz clic en una casilla y pulsa una tecla, una combinación o un botón del ratón (central o laterales). Se guarda sola.</p>
+    <p class="lead">Click a box and press a key, a combination or a mouse button (middle or side). It saves on its own.</p>
 
     <section class="card helper-card" id="helper-card">
-      <h2>Ayudante para pegar como fichero</h2>
-      <p id="helper" class="helper">Comprobando el ayudante…</p>
+      <h2>Helper to paste as a file</h2>
+      <p id="helper" class="helper">Checking the helper…</p>
       <ol id="helper-steps" class="steps" hidden>
-        <li>Pulsa <strong>Abrir la carpeta de la extensión</strong>: se abren sus detalles en Chrome.</li>
-        <li>Haz clic en la ruta de <strong>"Cargado desde"</strong>: se abre la carpeta en el Explorador.</li>
-        <li>Ejecuta <code>install.bat</code> (Windows, doble clic) o <code>install.sh</code> (macOS/Linux, en una terminal) y vuelve aquí.</li>
+        <li>Click <strong>Open the extension folder</strong>: its details open in Chrome.</li>
+        <li>Click the path under <strong>"Loaded from"</strong>: the folder opens in your file manager.</li>
+        <li>Run <code>install.bat</code> (Windows, double click) or <code>install.sh</code> (macOS/Linux, in a terminal) and come back here.</li>
       </ol>
       <div class="actions">
-        <button id="open-folder" class="primary" hidden>Abrir la carpeta de la extensión</button>
-        <button id="recheck">Volver a comprobar</button>
+        <button id="open-folder" class="primary" hidden>Open the extension folder</button>
+        <button id="recheck">Check again</button>
       </div>
     </section>
 
     <section class="card">
-      <h2>Copiar HTML + CSS</h2>
-      <p>Elige un elemento y copia su HTML y las reglas CSS que le aplican.</p>
+      <h2>Copy HTML + CSS</h2>
+      <p>Pick an element and copy its HTML and the CSS rules that apply to it.</p>
       <input class="recorder" data-rec="full" readonly>
       <label class="check"><input type="checkbox" data-respect="full">
-        <span>Si hay texto seleccionado o estás escribiendo en un campo, que el atajo funcione como siempre</span></label>
+        <span>When text is selected or you are typing in a field, let the shortcut work as usual</span></label>
     </section>
 
     <section class="card">
-      <h2>Copiar solo HTML</h2>
-      <p>Igual, pero sin el CSS.</p>
+      <h2>Copy HTML only</h2>
+      <p>The same, without the CSS.</p>
       <input class="recorder" data-rec="html" readonly>
       <label class="check"><input type="checkbox" data-respect="html">
-        <span>Si hay texto seleccionado o estás escribiendo en un campo, que el atajo funcione como siempre</span></label>
+        <span>When text is selected or you are typing in a field, let the shortcut work as usual</span></label>
     </section>
 
     <section class="card">
-      <h2>Cursor al elegir</h2>
-      <p>El cursor que se pone mientras eliges un elemento. Pasa el ratón por encima para probarlo.</p>
+      <h2>Picking cursor</h2>
+      <p>The cursor shown while you pick an element. Hover over one to try it.</p>
       <div class="cursors" id="cursors"></div>
     </section>
 
     <section class="card">
-      <h2>Qué se copia</h2>
-      <p>Lo que queda en el portapapeles al elegir un elemento.</p>
+      <h2>Copy as</h2>
+      <p>What ends up on the clipboard when you pick an element.</p>
       <label class="check"><input type="radio" name="output" value="file">
-        <span><strong>Fichero</strong>: guarda un <code>.md</code> para pegarlo como fichero donde lo necesites. Se guardan los últimos 50; si el nombre se repite, se numera (<code>_2</code>, <code>_3</code>…).</span></label>
+        <span><strong>File</strong>: saves a <code>.md</code> to paste as a file wherever you need it. The last 50 are kept; repeated names are numbered (<code>_2</code>, <code>_3</code>…).</span></label>
       <label class="check"><input type="radio" name="output" value="text">
-        <span><strong>Texto</strong>: copia el contenido tal cual, para pegarlo en cualquier sitio.</span></label>
+        <span><strong>Text</strong>: copies the content as is, to paste anywhere.</span></label>
     </section>
 
     <div class="actions">
-      <button id="reset">Restaurar por defecto</button>
+      <button id="reset">Reset to defaults</button>
       <span id="status" role="status"></span>
     </div>
 
     <p class="help">
-      Mientras eliges: clic o <kbd>Enter</kbd> copia, <kbd>↑</kbd>/<kbd>↓</kbd> sube al padre o baja al hijo, <kbd>Esc</kbd> cancela.<br>
-      Los cambios se aplican al momento en las pestañas abiertas.
+      While picking: click or <kbd>Enter</kbd> copies, drag selects the common parent, <kbd>↑</kbd>/<kbd>↓</kbd> go to the parent or child, <kbd>Esc</kbd> cancels.<br>
+      Changes apply instantly in open tabs.
     </p>
   </main>
   <script src="shortcuts.js"></script>

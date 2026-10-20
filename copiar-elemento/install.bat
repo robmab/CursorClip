@@ -7,6 +7,6 @@ set "MANIFEST=%~dp0native\host.json"
 reg add "HKCU\Software\Google\Chrome\NativeMessagingHosts\%HOST%" /ve /t REG_SZ /d "%MANIFEST%" /f >nul
 reg add "HKCU\Software\BraveSoftware\Brave-Browser\NativeMessagingHosts\%HOST%" /ve /t REG_SZ /d "%MANIFEST%" /f >nul
 
-echo Ayudante instalado: %MANIFEST%
-echo Vuelve a las opciones de la extension y pulsa "Volver a comprobar".
+echo Helper installed: %MANIFEST%
+echo Go back to the extension options and click "Check again".
 pause

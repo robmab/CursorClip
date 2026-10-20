@@ -8,12 +8,12 @@
     <path d="M 40 46 a 10 10 0 0 1 10 -10 h 360 a 10 10 0 0 1 10 10 v 24 h -380 z" fill="#eaeef2"/>
     <text x="56" y="59" font-size="13" fill="#656d76" font-family="Consolas, monospace">span.title.md</text>
     <g font-family="Consolas, monospace" font-size="12.5">
-      <text x="56" y="94" fill="#1f2328"><tspan font-weight="700">Elemento:</tspan> `a.card-title &gt; span` · 181×24</text>
-      <text x="56" y="114" fill="#1f2328"><tspan font-weight="700">Página:</tspan> https://app.local/clients?id=7</text>
+      <text x="56" y="94" fill="#1f2328"><tspan font-weight="700">Element:</tspan> `a.card-title &gt; span` · 181×24</text>
+      <text x="56" y="114" fill="#1f2328"><tspan font-weight="700">Page:</tspan> https://app.local/clients?id=7</text>
       <text x="56" y="142" fill="#0550ae">&lt;span class="title"&gt;Clients&lt;/span&gt;</text>
       <text x="56" y="170" fill="#656d76">/* app.css */</text>
       <text x="56" y="188" fill="#1f2328">.title { white-space: pre-wrap; }</text>
-      <text x="56" y="210" fill="#656d76">/* Heredado de los padres */</text>
+      <text x="56" y="210" fill="#656d76">/* Inherited from ancestors */</text>
       <text x="56" y="228" fill="#1f2328">.card-title { color: var(--ink); … }</text>
       <text x="56" y="250" fill="#656d76">/* Variables */</text>
       <text x="56" y="268" fill="#1f2328">--ink: #1f2328;</text>

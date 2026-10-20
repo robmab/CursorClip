@@ -33,7 +33,7 @@ $msg = [Text.Encoding]::UTF8.GetString($body) | ConvertFrom-Json
 
 try {
   if ($msg.type -eq 'ping') { Send-Message @{ ok = $true; version = 1 }; exit }
-  if ($msg.type -ne 'save') { throw "mensaje desconocido: $($msg.type)" }
+  if ($msg.type -ne 'save') { throw "unknown message: $($msg.type)" }
 
   $dir = Join-Path $env:TEMP 'copiar-elemento'
   New-Item -ItemType Directory -Force $dir | Out-Null

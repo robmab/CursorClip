@@ -29,15 +29,15 @@ BODY=$(head -c "$LEN")
 case "$(field type)" in
   ping) send '{"ok":true,"version":1}'; exit 0 ;;
   save) ;;
-  *) send '{"ok":false,"error":"mensaje desconocido"}'; exit 0 ;;
+  *) send '{"ok":false,"error":"unknown message"}'; exit 0 ;;
 esac
 
 fail() { send "{\"ok\":false,\"error\":\"$(json_escape "$1")\"}"; exit 0; }
 
-mkdir -p "$DIR" || fail "no se puede crear $DIR"
+mkdir -p "$DIR" || fail "cannot create $DIR"
 
 NAME=$(field name | tr -d '\n' | tr -c 'A-Za-z0-9_.#-' '_')
-[ -n "$NAME" ] || NAME="elemento.md"
+[ -n "$NAME" ] || NAME="element.md"
 case "$NAME" in *.md) ;; *) NAME="$NAME.md" ;; esac
 BASE="${NAME%.md}"
 
@@ -48,7 +48,7 @@ while [ -e "$FILE" ]; do FILE="$DIR/${BASE}_$n.md"; n=$((n + 1)); done
 
 # base64 -d en Linux y macOS modernos; -D en macOS antiguos
 if printf 'YQ==' | base64 -d >/dev/null 2>&1; then B64D='-d'; else B64D='-D'; fi
-field b64 | base64 "$B64D" > "$FILE" 2>/dev/null || fail "no se pudo escribir el fichero"
+field b64 | base64 "$B64D" > "$FILE" 2>/dev/null || fail "could not write the file"
 
 # Se guardan los últimos MAX_FILES; los más antiguos fuera (los nombres van saneados, sin espacios)
 ls -t "$DIR"/*.md 2>/dev/null | tail -n +$((MAX_FILES + 1)) | while IFS= read -r old; do rm -f "$old"; done
