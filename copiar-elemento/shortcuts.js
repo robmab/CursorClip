@@ -4,10 +4,10 @@ const SHORTCUT_DEFAULTS = {
   full: { ctrl: true, alt: false, shift: false, meta: false, code: 'KeyC', key: 'c', respectSelection: true },
 };
 
-// Cursores del modo selección (cursors/N.png); x,y es la punta y color el del resaltado, a juego y sin repetir.
-// 'system' es la cruz del navegador; sin color se usa el rosa de siempre
+// Cursores del modo selección (cursors/N.png); x,y es la punta y color el del resaltado, a juego.
+// 'system' es la cruz del navegador; sin color se usa el rosa de siempre. El primero (el puntero del icono) es el de por defecto
 const CURSORS = [
-  { id: '1', x: 8, y: 8 },
+  { id: '14', x: 3, y: 3, hd: true },
   { id: '3', x: 0, y: 0, color: '#2b8ae6' },
   { id: '4', x: 2, y: 1, color: '#a8874f' },
   { id: '5', x: 5, y: 0, color: '#8e44ad' },
@@ -22,11 +22,20 @@ const CURSORS = [
 ];
 const DEFAULT_COLOR = '#d63384';
 
-// Un cursor guardado que ya no existe (p. ej. uno quitado de la colección) vuelve al de por defecto
-const cursorIdOf = (id) => (CURSORS.some((c) => c.id === id) ? id : '1');
+// Valor de 'cursor' (sin el respaldo); los hd llevan también N@2x.png, que Chrome usa con el escalado de pantalla
+const cursorValue = (c, url) => (c.hd
+  ? `image-set(url("${url(c.id)}") 1x, url("${url(`${c.id}@2x`)}") 2x) ${c.x} ${c.y}`
+  : `url("${url(c.id)}") ${c.x} ${c.y}`);
 
-// Toda la configuración guardada; output: 'file' copia el .md como fichero (o @"ruta" sin ayudante), 'text' el contenido
-const SETTINGS_DEFAULTS = { ...SHORTCUT_DEFAULTS, output: 'file', cursor: '1' };
+// Un cursor guardado que ya no existe vuelve al de por defecto; la antigua cruz '1', a la del sistema, que es lo más parecido
+const cursorIdOf = (id) => (id === '1' ? 'system' : CURSORS.some((c) => c.id === id) ? id : CURSORS[0].id);
+
+// Toda la configuración guardada; output: 'file' copia el .md como fichero (o @"ruta" sin ayudante), 'text' el contenido.
+// checkUpdates: una vez al día mira en GitHub si hay versión nueva
+const SETTINGS_DEFAULTS = { ...SHORTCUT_DEFAULTS, output: 'file', cursor: '14', checkUpdates: true };
+
+// Repo de donde salen las versiones (sus releases)
+const REPO = 'robmab/CursorClip';
 
 // Ayudante nativo, registrado con install.bat (Windows) o install.sh (macOS/Linux)
 const NATIVE_HOST = 'com.copiar_elemento.helper';

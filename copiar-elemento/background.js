@@ -99,8 +99,61 @@ const saveToDownloads = async ({ name, text }) => {
   }
 };
 
+// --- Versión nueva: la última release del repo frente a la del manifest ---
+
+const UPDATE_EVERY = 24 * 60 * 60 * 1000;
+const VERSION = chrome.runtime.getManifest().version;
+const TITLE = chrome.runtime.getManifest().action.default_title;
+
+// Por números y no por texto, que 1.10 es mayor que 1.9
+const isNewer = (a, b) => {
+  const x = a.split('.').map(Number);
+  const y = b.split('.').map(Number);
+  for (let i = 0; i < Math.max(x.length, y.length); i++) {
+    const d = (x[i] || 0) - (y[i] || 0);
+    if (d) return d > 0;
+  }
+  return false;
+};
+
+// update: { checked, version, url }; version es null mientras el repo no tenga ninguna release
+const showUpdate = (update, enabled) => {
+  const v = enabled && update.version && isNewer(update.version, VERSION) ? update.version : null;
+  chrome.action.setBadgeText({ text: v ? '↑' : '' });
+  chrome.action.setBadgeBackgroundColor({ color: '#1f6feb' });
+  chrome.action.setTitle({ title: v ? `${TITLE}\n\nVersion ${v} available: right click → Options` : TITLE });
+  return { ...update, available: !!v, current: VERSION, enabled };
+};
+
+const checkUpdate = async (force) => {
+  const { checkUpdates } = await chrome.storage.sync.get({ checkUpdates: true });
+  let { update = {} } = await chrome.storage.local.get('update');
+  if (checkUpdates && (force || Date.now() - (update.checked || 0) > UPDATE_EVERY)) {
+    try {
+      const res = await fetch(`https://api.github.com/repos/${REPO}/releases/latest`, { headers: { Accept: 'application/vnd.github+json' } });
+      // 404 = aún no hay releases: no es un error, simplemente no hay nada que avisar
+      if (!res.ok && res.status !== 404) throw new Error(res.status);
+      const rel = res.ok ? await res.json() : null;
+      update = { checked: Date.now(), version: rel ? rel.tag_name.replace(/^v/, '') : null, url: rel ? rel.html_url : null };
+      await chrome.storage.local.set({ update });
+    } catch (e) {
+      // Sin red o GitHub caído: se queda lo último que se supo y se reintenta en la próxima
+    }
+  }
+  return showUpdate(update, checkUpdates);
+};
+
+chrome.runtime.onStartup.addListener(() => checkUpdate());
+chrome.runtime.onInstalled.addListener(() => checkUpdate());
+checkUpdate();
+
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
-  if (!msg || msg.type !== 'save') return;
+  if (!msg) return;
+  if (msg.type === 'checkUpdate') {
+    checkUpdate(true).then(sendResponse);
+    return true;
+  }
+  if (msg.type !== 'save') return;
   saveElement(msg).then(sendResponse, (e) => sendResponse({ error: e.message }));
   return true;
 });

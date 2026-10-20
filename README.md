@@ -71,7 +71,7 @@ To remove the helper run [`uninstall.bat`](copiar-elemento/uninstall.bat) or [`u
 <img src="docs/options.svg" alt="CursorClip options" width="880">
 
 - **Shortcuts:** record anything: combos, single keys (active only outside text fields), or the middle / side mouse buttons. Each shortcut can step aside when text is selected.
-- **Cursor:** 11 cursors plus the system crosshair. Each one tints the selection box, so the highlight matches the cursor.
+- **Cursor:** 11 cursors plus the system crosshair; the default is the same pointer as the toolbar icon. Each one tints the selection box, so the highlight matches the cursor.
 - **Copy as:** a **file** (the last 50 are kept; repeated names become `name_2.md`, `name_3.md`…) or **text** (for chats that don't accept pasted files, like Copilot Chat in VS Code).
 
 Changes apply instantly in open tabs.
@@ -80,7 +80,9 @@ Changes apply instantly in open tabs.
 
 <img src="docs/privacy.svg" alt="CursorClip keeps everything on your computer" width="880">
 
-Everything happens on your computer: there is no server, no analytics and no network request. The helper only writes the `.md` file and sets the clipboard.
+Everything happens on your computer: there is no server and no analytics. The helper only writes the `.md` file and sets the clipboard.
+
+The only network request is the update check: once a day the extension asks GitHub for the latest release of this repo, and if it's newer than yours the toolbar icon shows a small `↑` and the options page links to it. Nothing about you or the pages you visit is sent, and you can turn it off in the options page.
 
 | Permission | Why |
 |---|---|

@@ -39,6 +39,8 @@
     #status.ok { color: var(--ok); }
     #status.warn { color: var(--warn); }
     #status.error { color: var(--error); }
+    .card p.update-new { color: var(--text); }
+    .update-new a { color: var(--info); font-weight: 600; }
     .help { color: var(--muted); font-size: 13px; margin-top: 24px; }
     code { font: 12px ui-monospace, monospace; }
     /* Ayudante: azul de "haz esto" mientras falta; verde y discreto cuando ya está */
@@ -112,6 +114,13 @@
         <span><strong>File</strong>: saves a <code>.md</code> to paste as a file wherever you need it. The last 50 are kept; repeated names are numbered (<code>_2</code>, <code>_3</code>…).</span></label>
       <label class="check"><input type="radio" name="output" value="text">
         <span><strong>Text</strong>: copies the content as is, to paste anywhere.</span></label>
+    </section>
+
+    <section class="card">
+      <h2>Updates</h2>
+      <p id="update">Checking for a new version…</p>
+      <label class="check"><input type="checkbox" id="check-updates">
+        <span>Check GitHub for a new version once a day. It only asks for the latest release; nothing about you or your pages is sent.</span></label>
     </section>
 
     <div class="actions">

@@ -26,7 +26,43 @@
     }
     for (const r of document.querySelectorAll('[name="output"]')) r.checked = r.value === config.output;
     for (const r of document.querySelectorAll('[name="cursor"]')) r.checked = r.value === cursorIdOf(config.cursor);
+    checkUpdatesBox.checked = config.checkUpdates;
   };
+
+  // Versión nueva: la mira background.js, que es quien pone el aviso en el icono
+  const updateText = document.getElementById('update');
+  const checkUpdatesBox = document.getElementById('check-updates');
+
+  const showUpdate = (u) => {
+    updateText.className = '';
+    if (!u || !u.enabled) {
+      updateText.textContent = `You have version ${chrome.runtime.getManifest().version}. Update checks are off.`;
+    } else if (u.available) {
+      updateText.className = 'update-new';
+      updateText.textContent = `Version ${u.version} is available (you have ${u.current}). `;
+      const link = document.createElement('a');
+      link.href = u.url;
+      link.target = '_blank';
+      link.textContent = 'Download it from GitHub';
+      updateText.append(link, ', then replace the extension folder and click reload in chrome://extensions.');
+    } else {
+      updateText.textContent = u.version
+        ? `You have the latest version (${u.current}).`
+        : `You have version ${u.current}. No release has been published yet.`;
+    }
+  };
+
+  const checkUpdate = () => chrome.runtime.sendMessage({ type: 'checkUpdate' }, showUpdate);
+
+  checkUpdatesBox.addEventListener('change', () => {
+    config.checkUpdates = checkUpdatesBox.checked;
+    save(config.checkUpdates ? 'Saved: checks for updates' : 'Saved: no update checks');
+  });
+  // Ya guardada la casilla (o tras "Reset"), se vuelve a mirar para pintar el texto y el aviso del icono
+  chrome.storage.onChanged.addListener((changes, area) => {
+    if (area === 'sync' && 'checkUpdates' in changes) checkUpdate();
+  });
+  checkUpdate();
 
   // Una casilla por cursor, que al pasar por encima ya usa ese cursor
   const cursorsBox = document.getElementById('cursors');
@@ -44,9 +80,10 @@
     } else {
       const img = document.createElement('img');
       img.src = `cursors/${c.id}.png`;
+      if (c.hd) img.srcset = `cursors/${c.id}.png 1x, cursors/${c.id}@2x.png 2x`;
       img.alt = `Cursor ${c.id}`;
       opt.append(img);
-      opt.style.cursor = `url("cursors/${c.id}.png") ${c.x} ${c.y}, crosshair`;
+      opt.style.cursor = `${cursorValue(c, (n) => `cursors/${n}.png`)}, crosshair`;
     }
     // Franja con el color que tendrá el resaltado con este cursor
     opt.style.boxShadow = `inset 0 -4px 0 ${c.color || DEFAULT_COLOR}`;

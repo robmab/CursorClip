@@ -405,7 +405,7 @@
     label.style.cssText = `position:fixed;z-index:${TOP};pointer-events:none;background:${color};color:#fff;`
       + 'font:12px/1.5 monospace;padding:1px 6px;border-radius:3px;white-space:nowrap';
     const img = c && globalThis.chrome && chrome.runtime && chrome.runtime.getURL
-      ? `url("${chrome.runtime.getURL(`cursors/${c.id}.png`)}") ${c.x} ${c.y}, ` : '';
+      ? `${cursorValue(c, (n) => chrome.runtime.getURL(`cursors/${n}.png`))}, ` : '';
     cursor = document.createElement('style');
     cursor.textContent = `*, *::before, *::after { cursor: ${img}crosshair !important; }`;
     document.documentElement.append(box, rectBox, label, cursor);

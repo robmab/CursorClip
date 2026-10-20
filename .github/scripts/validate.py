@@ -91,6 +91,9 @@ def check_cursors():
     for cid in ids:
         if cid != 'system' and not (EXT / 'cursors' / f'{cid}.png').is_file():
             error(path, f'cursor {cid} has no cursors/{cid}.png')
+    for cid in re.findall(r"id: '([^']+)'[^}]*hd: true", block.group(1)):
+        if not (EXT / 'cursors' / f'{cid}@2x.png').is_file():
+            error(path, f'cursor {cid} is hd but has no cursors/{cid}@2x.png')
     colors = re.findall(r"color: '(#[0-9a-fA-F]{6})'", block.group(1))
     if len(colors) != len(set(c.lower() for c in colors)):
         error(path, 'two cursors share the same highlight color')

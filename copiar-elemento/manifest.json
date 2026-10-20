@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "CursorClip",
-  "version": "1.19",
+  "version": "1.20",
   "description": "Point at any element on a page and copy its HTML and the CSS that styles it, as a file or as text.",
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4+tfPcq4H2E8jHL/MiRSa2o17yj6aF5+diD+9Jyt1nyYGFmIE6hieddDvsI167G3/+RNpAgiw/WpDukA/xXnj9rqsEiA97YTpBEfG42EIR7h/EDjwyvRRdmHjl9hh7OfkZ1N7EEBek9YOesG+eBLri+Ryn5c0Uj4l2O/Gzi2ie8A+Nuyt1K6gznCcy22ygQyehRNWKFXESZB2ep/DJ8Aqm3ggKyT/f3tz/H1VKIBeZliCHby6st/NYOuPp5E19utE/kISd8RdeSjWI1mQtwakNXEssYehKOp75PCH98nlOfhqTEHH5fh4YyoDXDLQfWO4uNBb2mwvYI0UP0eDYgs5wIDAQAB",
   "icons": {
