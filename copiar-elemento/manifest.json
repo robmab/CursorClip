@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "CursorClip",
+  "version": "1.17",
+  "description": "Elige un elemento de la página y copia su HTML y el CSS que le aplica, como texto o como fichero.",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4+tfPcq4H2E8jHL/MiRSa2o17yj6aF5+diD+9Jyt1nyYGFmIE6hieddDvsI167G3/+RNpAgiw/WpDukA/xXnj9rqsEiA97YTpBEfG42EIR7h/EDjwyvRRdmHjl9hh7OfkZ1N7EEBek9YOesG+eBLri+Ryn5c0Uj4l2O/Gzi2ie8A+Nuyt1K6gznCcy22ygQyehRNWKFXESZB2ep/DJ8Aqm3ggKyT/f3tz/H1VKIBeZliCHby6st/NYOuPp5E19utE/kISd8RdeSjWI1mQtwakNXEssYehKOp75PCH98nlOfhqTEHH5fh4YyoDXDLQfWO4uNBb2mwvYI0UP0eDYgs5wIDAQAB",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "CursorClip\nClic: elegir un elemento y copiar su HTML + CSS\nClic derecho → Opciones",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png"
+    }
+  },
+  "permissions": ["storage", "downloads", "downloads.ui", "nativeMessaging", "activeTab", "scripting"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["shortcuts.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["cursors/*.png"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

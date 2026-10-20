@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 270" width="880" height="270" role="img" aria-labelledby="t d">
+  <title id="t">CursorClip options</title>
+  <desc id="d">Options page: record any shortcut including mouse buttons, choose between eleven cursors each with its own highlight color, and choose whether to copy as a file or as text.</desc>
+  <rect x="1" y="1" width="878" height="268" rx="18" fill="#ffffff" stroke="#d0d7de" stroke-width="2"/>
+  <g font-family="Segoe UI, -apple-system, Helvetica, Arial, sans-serif">
+    <!-- Shortcuts -->
+    <text x="30" y="50" font-size="13" font-weight="700" fill="#1f2328">SHORTCUTS</text>
+    <text x="30" y="76" font-size="12.5" fill="#57606a">HTML + CSS</text>
+    <rect x="30" y="84" width="220" height="32" rx="6" fill="#f6f8fa" stroke="#d63384" stroke-width="2"/>
+    <text x="44" y="105" font-size="14" fill="#1f2328" font-family="Consolas, monospace">Ctrl+C</text>
+    <text x="30" y="140" font-size="12.5" fill="#57606a">HTML only</text>
+    <rect x="30" y="148" width="220" height="32" rx="6" fill="#f6f8fa" stroke="#d0d7de"/>
+    <text x="44" y="169" font-size="14" fill="#1f2328" font-family="Consolas, monospace">Ctrl+Ratón atrás</text>
+    <text x="30" y="206" font-size="12" fill="#57606a">Keys, combos, single keys</text>
+    <text x="30" y="222" font-size="12" fill="#57606a">or middle / side mouse buttons</text>
+
+    <!-- Cursors -->
+    <text x="300" y="50" font-size="13" font-weight="700" fill="#1f2328">CURSOR + HIGHLIGHT COLOR</text>
+    <g>
+      <rect x="300" y="64" width="40" height="40" rx="6" fill="#f6f8fa" stroke="#d63384" stroke-width="2"/><rect x="300" y="100" width="40" height="4" fill="#d63384"/>
+      <rect x="348" y="64" width="40" height="40" rx="6" fill="#f6f8fa" stroke="#d0d7de"/><rect x="348" y="100" width="40" height="4" fill="#2b8ae6"/>
+      <rect x="396" y="64" width="40" height="40" rx="6" fill="#f6f8fa" stroke="#d0d7de"/><rect x="396" y="100" width="40" height="4" fill="#a8874f"/>
+      <rect x="444" y="64" width="40" height="40" rx="6" fill="#f6f8fa" stroke="#d0d7de"/><rect x="444" y="100" width="40" height="4" fill="#8e44ad"/>
+      <rect x="492" y="64" width="40" height="40" rx="6" fill="#f6f8fa" stroke="#d0d7de"/><rect x="492" y="100" width="40" height="4" fill="#6b7d2a"/>
+      <rect x="540" y="64" width="40" height="40" rx="6" fill="#f6f8fa" stroke="#d0d7de"/><rect x="540" y="100" width="40" height="4" fill="#1f9d55"/>
+      <rect x="300" y="112" width="40" height="40" rx="6" fill="#f6f8fa" stroke="#d0d7de"/><rect x="300" y="148" width="40" height="4" fill="#5b6b84"/>
+      <rect x="348" y="112" width="40" height="40" rx="6" fill="#f6f8fa" stroke="#d0d7de"/><rect x="348" y="148" width="40" height="4" fill="#0b8ea5"/>
+      <rect x="396" y="112" width="40" height="40" rx="6" fill="#f6f8fa" stroke="#d0d7de"/><rect x="396" y="148" width="40" height="4" fill="#d26a0c"/>
+      <rect x="444" y="112" width="40" height="40" rx="6" fill="#f6f8fa" stroke="#d0d7de"/><rect x="444" y="148" width="40" height="4" fill="#a0522d"/>
+      <rect x="492" y="112" width="40" height="40" rx="6" fill="#f6f8fa" stroke="#d0d7de"/><rect x="492" y="148" width="40" height="4" fill="#d32f2f"/>
+      <rect x="540" y="112" width="40" height="40" rx="6" fill="#f6f8fa" stroke="#d0d7de"/><rect x="540" y="148" width="40" height="4" fill="#d63384"/>
+    </g>
+    <g fill="#57606a">
+      <path d="M 314 76 v 16 m -8 -8 h 16" stroke="#8c959f" stroke-width="2"/>
+      <path transform="translate(362 74)" d="M 0 0 L 0 18 L 5 13 L 8 20 L 11 19 L 8 12 L 14 12 Z" fill="#2b8ae6"/>
+      <path transform="translate(410 74)" d="M 0 0 L 0 18 L 5 13 L 8 20 L 11 19 L 8 12 L 14 12 Z" fill="#a8874f"/>
+      <path transform="translate(458 74)" d="M 0 0 L 0 18 L 5 13 L 8 20 L 11 19 L 8 12 L 14 12 Z" fill="#8e44ad"/>
+      <path transform="translate(506 74)" d="M 0 0 L 0 18 L 5 13 L 8 20 L 11 19 L 8 12 L 14 12 Z" fill="#6b7d2a"/>
+      <path transform="translate(554 74)" d="M 0 0 L 0 18 L 5 13 L 8 20 L 11 19 L 8 12 L 14 12 Z" fill="#1f9d55"/>
+      <path transform="translate(314 122)" d="M 0 0 L 0 18 L 5 13 L 8 20 L 11 19 L 8 12 L 14 12 Z" fill="#5b6b84"/>
+      <path transform="translate(362 122)" d="M 0 0 L 0 18 L 5 13 L 8 20 L 11 19 L 8 12 L 14 12 Z" fill="#0b8ea5"/>
+      <path transform="translate(410 122)" d="M 0 0 L 0 18 L 5 13 L 8 20 L 11 19 L 8 12 L 14 12 Z" fill="#d26a0c"/>
+      <path transform="translate(458 122)" d="M 0 0 L 0 18 L 5 13 L 8 20 L 11 19 L 8 12 L 14 12 Z" fill="#a0522d"/>
+      <path transform="translate(506 122)" d="M 0 0 L 0 18 L 5 13 L 8 20 L 11 19 L 8 12 L 14 12 Z" fill="#d32f2f"/>
+      <text x="560" y="138" text-anchor="middle" font-size="16" fill="#1f2328">+</text>
+    </g>
+    <text x="300" y="182" font-size="12" fill="#57606a">11 cursors + the system crosshair;</text>
+    <text x="300" y="198" font-size="12" fill="#57606a">each one tints the selection box</text>
+
+    <!-- Output -->
+    <text x="630" y="50" font-size="13" font-weight="700" fill="#1f2328">COPY AS</text>
+    <circle cx="640" cy="80" r="7" fill="#ffffff" stroke="#d63384" stroke-width="2"/><circle cx="640" cy="80" r="3.5" fill="#d63384"/>
+    <text x="656" y="85" font-size="13" fill="#1f2328"><tspan font-weight="600">File</tspan> — last 50 kept,</text>
+    <text x="656" y="102" font-size="12" fill="#57606a">repeated names get _2, _3…</text>
+    <circle cx="640" cy="130" r="7" fill="#ffffff" stroke="#8c959f" stroke-width="2"/>
+    <text x="656" y="135" font-size="13" fill="#1f2328"><tspan font-weight="600">Text</tspan> — paste anywhere</text>
+    <text x="656" y="152" font-size="12" fill="#57606a">(e.g. Copilot Chat)</text>
+    <text x="630" y="198" font-size="12" fill="#57606a">Changes apply instantly</text>
+    <text x="630" y="214" font-size="12" fill="#57606a">in open tabs</text>
+  </g>
+</svg>

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 300" width="880" height="300" role="img" aria-labelledby="t d">
+  <title id="t">How to use CursorClip</title>
+  <desc id="d">Three steps: press Ctrl+C or click the toolbar icon, click an element or drag to pick the common parent, then paste with Ctrl+V. While picking, arrow keys move up or down the tree and Esc cancels.</desc>
+  <rect x="1" y="1" width="878" height="298" rx="18" fill="#ffffff" stroke="#d0d7de" stroke-width="2"/>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8c959f"/></marker>
+    <g id="key"><rect width="64" height="34" rx="7" fill="#f6f8fa" stroke="#d0d7de"/><rect width="64" height="30" rx="7" fill="#ffffff" stroke="#d0d7de"/></g>
+  </defs>
+  <g font-family="Segoe UI, -apple-system, Helvetica, Arial, sans-serif">
+    <!-- Step 1 -->
+    <rect x="30" y="30" width="250" height="170" rx="14" fill="#fdf2f8" stroke="#f0cfe0"/>
+    <text x="50" y="60" font-size="13" font-weight="700" fill="#d63384">1 · START PICKING</text>
+    <use href="#key" x="50" y="84"/><text x="82" y="105" text-anchor="middle" font-size="15" font-weight="600" fill="#1f2328">Ctrl</text>
+    <text x="126" y="106" font-size="18" fill="#656d76">+</text>
+    <use href="#key" x="144" y="84"/><text x="176" y="105" text-anchor="middle" font-size="15" font-weight="600" fill="#1f2328">C</text>
+    <text x="50" y="150" font-size="13" fill="#57606a">HTML + CSS · or <tspan font-family="Consolas, monospace">Ctrl+Alt+C</tspan></text>
+    <text x="50" y="172" font-size="13" fill="#57606a">for HTML only · or click the icon</text>
+
+    <!-- Step 2 -->
+    <rect x="315" y="30" width="250" height="170" rx="14" fill="#fdf2f8" stroke="#f0cfe0"/>
+    <text x="335" y="60" font-size="13" font-weight="700" fill="#d63384">2 · CLICK OR DRAG</text>
+    <rect x="335" y="78" width="210" height="72" rx="8" fill="#d63384" fill-opacity="0.12" stroke="#d63384" stroke-width="2"/>
+    <rect x="347" y="92" width="70" height="44" rx="5" fill="#ffffff" stroke="#e8b4cd"/>
+    <rect x="463" y="92" width="70" height="44" rx="5" fill="#ffffff" stroke="#e8b4cd"/>
+    <rect x="380" y="108" width="118" height="20" fill="none" stroke="#d63384" stroke-dasharray="4 3"/>
+    <path transform="translate(492 112) rotate(-12)" d="M 0 0 L 0 22 L 6 16 L 10 25 L 14 23 L 10 15 L 17 15 Z" fill="#1f2328" stroke="#ffffff" stroke-width="2"/>
+    <text x="335" y="172" font-size="13" fill="#57606a">Drag across two items → their</text>
+    <text x="335" y="190" font-size="13" fill="#57606a">common parent is copied</text>
+
+    <!-- Step 3 -->
+    <rect x="600" y="30" width="250" height="170" rx="14" fill="#fdf2f8" stroke="#f0cfe0"/>
+    <text x="620" y="60" font-size="13" font-weight="700" fill="#d63384">3 · PASTE ANYWHERE</text>
+    <use href="#key" x="620" y="84"/><text x="652" y="105" text-anchor="middle" font-size="15" font-weight="600" fill="#1f2328">Ctrl</text>
+    <text x="696" y="106" font-size="18" fill="#656d76">+</text>
+    <use href="#key" x="714" y="84"/><text x="746" y="105" text-anchor="middle" font-size="15" font-weight="600" fill="#1f2328">V</text>
+    <text x="620" y="150" font-size="13" fill="#57606a">As a .md file attachment</text>
+    <text x="620" y="172" font-size="13" fill="#57606a">(with the helper) or as text</text>
+
+    <path d="M 284 115 H 310" stroke="#8c959f" stroke-width="2" marker-end="url(#a)"/>
+    <path d="M 569 115 H 595" stroke="#8c959f" stroke-width="2" marker-end="url(#a)"/>
+
+    <!-- While picking -->
+    <text x="30" y="242" font-size="13" font-weight="700" fill="#1f2328">While picking</text>
+    <g font-size="13" fill="#57606a">
+      <rect x="140" y="226" width="26" height="24" rx="5" fill="#f6f8fa" stroke="#d0d7de"/><text x="153" y="243" text-anchor="middle" fill="#1f2328">↑</text>
+      <rect x="170" y="226" width="26" height="24" rx="5" fill="#f6f8fa" stroke="#d0d7de"/><text x="183" y="243" text-anchor="middle" fill="#1f2328">↓</text>
+      <text x="204" y="243">parent / child</text>
+      <rect x="314" y="226" width="54" height="24" rx="5" fill="#f6f8fa" stroke="#d0d7de"/><text x="341" y="243" text-anchor="middle" fill="#1f2328">Enter</text>
+      <text x="376" y="243">copy</text>
+      <rect x="430" y="226" width="40" height="24" rx="5" fill="#f6f8fa" stroke="#d0d7de"/><text x="450" y="243" text-anchor="middle" fill="#1f2328">Esc</text>
+      <text x="478" y="243">cancel</text>
+      <text x="30" y="276">Every shortcut is configurable: key combos, single keys, or the middle / side mouse buttons.</text>
+    </g>
+  </g>
+</svg>
