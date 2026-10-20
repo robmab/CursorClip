@@ -278,11 +278,41 @@
     }
   };
 
+  // El clip con ojos del aviso; a mano con createElementNS, que innerHTML lo bloquean las páginas con Trusted Types
+  const SVG_NS = 'http://www.w3.org/2000/svg';
+  const clipIcon = (ok) => {
+    const svg = document.createElementNS(SVG_NS, 'svg');
+    svg.setAttribute('viewBox', '0 0 20 32');
+    svg.style.cssText = 'display:block;flex:none;width:18px;height:28px;overflow:visible';
+    const add = (tag, attrs, css) => {
+      const n = document.createElementNS(SVG_NS, tag);
+      for (const k in attrs) n.setAttribute(k, attrs[k]);
+      n.style.cssText = css;
+      svg.append(n);
+    };
+    const wire = 'M12 8V22A2 2 0 0 1 8 22V6A3.5 3.5 0 0 1 15 6V25A5 5 0 0 1 5 25V9';
+    add('path', { d: wire }, 'fill:none;stroke:rgba(0,0,0,.35);stroke-width:3.4;stroke-linecap:round');
+    add('path', { d: wire }, 'fill:none;stroke:#eef1f4;stroke-width:2;stroke-linecap:round');
+    // Si sale bien mira al texto; si falla, cejas de preocupado y mirada abajo
+    const look = ok ? [0.9, -0.4] : [0.2, 0.9];
+    for (const x of [7.6, 13.4]) {
+      add('circle', { cx: x, cy: 12, r: 2.8 }, 'fill:#fff;stroke:#222;stroke-width:.8');
+      add('circle', { cx: x + look[0], cy: 12 + look[1], r: 1.25 }, 'fill:#222;stroke:none');
+    }
+    const brows = ok ? ['M5.2 8.2Q7.6 6.6 10 8', 'M11 8Q13.4 6.6 15.8 8.2'] : ['M5.2 8.6Q7.4 8.4 9.8 6.8', 'M11.2 6.8Q13.6 8.4 15.8 8.6'];
+    for (const d of brows) add('path', { d }, 'fill:none;stroke:#222;stroke-width:1.1;stroke-linecap:round');
+    return svg;
+  };
+
   const toast = (msg, ok) => {
     const t = document.createElement('div');
-    t.textContent = msg;
-    t.style.cssText = `position:fixed;z-index:${TOP};right:16px;bottom:16px;padding:8px 12px;border-radius:6px;`
-      + `font:13px/1.4 system-ui,sans-serif;color:#fff;background:${ok ? '#198754' : '#dc3545'};box-shadow:0 2px 8px rgba(0,0,0,.3)`;
+    const text = document.createElement('span');
+    text.textContent = msg;
+    text.style.cssText = 'font:inherit;color:inherit';
+    t.append(clipIcon(ok), text);
+    t.style.cssText = `position:fixed;z-index:${TOP};right:16px;bottom:16px;display:flex;align-items:center;gap:8px;`
+      + `padding:6px 12px 6px 9px;border-radius:6px;font:13px/1.4 system-ui,sans-serif;color:#fff;`
+      + `background:${ok ? '#198754' : '#dc3545'};box-shadow:0 2px 8px rgba(0,0,0,.3)`;
     document.documentElement.append(t);
     setTimeout(() => t.remove(), 2000);
   };
