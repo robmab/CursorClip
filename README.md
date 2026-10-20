@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/hero.webp" alt="CursorClip: next to a highlighted div.card, a paperclip holding a crosshair asks “It looks like you're trying to copy an element. Would you like help?”" width="880">
+  <img src="docs/hero.webp" alt="CursorClip: next to a highlighted div.card, a paperclip with big eyes and a mouse pointer asks “It looks like you're trying to copy an element. Would you like help?”" width="880">
 </p>
 
 [![CI](https://github.com/robmab/CursorClip/actions/workflows/ci.yml/badge.svg)](https://github.com/robmab/CursorClip/actions/workflows/ci.yml)
