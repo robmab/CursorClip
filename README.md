@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/hero.svg" alt="CursorClip: a paperclip holding a cursor asks “It looks like you're trying to copy an element. Would you like help?”" width="880">
+  <img src="docs/hero.webp" alt="CursorClip: next to a highlighted div.card, a paperclip holding a crosshair asks “It looks like you're trying to copy an element. Would you like help?”" width="880">
 </p>
 
 **CursorClip** is a Chrome extension that lets you point at any element on a web page and copy what an AI (or a teammate) needs to understand it: its HTML, the CSS that styles it — **with the file each rule comes from** — what it inherits from its parents, the CSS variables it uses and its final computed values. Paste it into Claude, Copilot, DeepSeek or any chat as a `.md` file or as plain text.
