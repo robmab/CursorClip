@@ -185,15 +185,18 @@
   const openFolder = document.getElementById('open-folder');
 
   const card = document.getElementById('helper-card');
+  const title = document.getElementById('helper-title');
 
   const checkHelper = () => {
     helper.textContent = 'Checking the helper…';
     chrome.runtime.sendNativeMessage(NATIVE_HOST, { type: 'ping' }, (res) => {
       const ok = !chrome.runtime.lastError && res && res.ok;
       card.classList.toggle('ok', !!ok);
+      card.classList.toggle('missing', !ok);
+      title.textContent = ok ? 'Helper to paste as a file' : 'REQUIRED STEP: INSTALL THE HELPER FOR CURSORCLIP TO WORK PROPERLY';
       helper.textContent = ok
         ? '✓ Helper installed: the .md is saved hidden in your temp folder and pastes as a file attachment.'
-        : 'Helper not installed: everything still works, but the .md goes to Downloads/copiar-elemento and @"path" is copied instead of the file.';
+        : 'Helper not installed: copies cannot be pasted as a file. The .md goes to Downloads/copiar-elemento and only @"path" is copied.';
       steps.hidden = ok;
       openFolder.hidden = ok;
     });
