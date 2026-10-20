@@ -193,7 +193,7 @@
       const ok = !chrome.runtime.lastError && res && res.ok;
       card.classList.toggle('ok', !!ok);
       card.classList.toggle('missing', !ok);
-      title.textContent = ok ? 'Helper to paste as a file' : 'REQUIRED STEP: INSTALL THE HELPER FOR CURSORCLIP TO WORK PROPERLY';
+      title.textContent = ok ? 'Helper to paste as a file' : 'RECOMMENDED: INSTALL THE HELPER TO PASTE COPIES AS A FILE';
       helper.textContent = ok
         ? '✓ Helper installed: the .md is saved hidden in your temp folder and pastes as a file attachment.'
         : 'Helper not installed: copies cannot be pasted as a file. The .md goes to Downloads/copiar-elemento and only @"path" is copied.';

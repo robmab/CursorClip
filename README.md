@@ -71,6 +71,7 @@ To remove the helper run [`uninstall.bat`](copiar-elemento/uninstall.bat) or [`u
 <img src="docs/options.svg" alt="CursorClip options" width="880">
 
 - **Shortcuts:** record anything: combos, single keys (active only outside text fields), or the middle / side mouse buttons. Each shortcut can step aside when text is selected.
+  - **Tip (Windows):** bind it to a side mouse button. A mouse click also focuses the window, so you can start picking in Chrome straight from another app or screen, without clicking first. Keyboard shortcuts only work once Chrome has focus.
 - **Cursor:** 11 cursors plus the system crosshair; the default is the same pointer as the toolbar icon. Each one tints the selection box, so the highlight matches the cursor.
 - **Copy as:** a **file** (the last 50 are kept; repeated names become `name_2.md`, `name_3.md`…) or **text** (for chats that don't accept pasted files, like Copilot Chat in VS Code).
 

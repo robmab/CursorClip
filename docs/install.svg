@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 266" width="880" height="266" role="img" aria-labelledby="t d">
   <title id="t">Installing CursorClip</title>
-  <desc id="d">Step 1: load the extension folder unpacked in Chrome. Step 2, optional: run install.bat to register the native helper. Step 3: the options page confirms the helper is installed.</desc>
+  <desc id="d">Step 1: load the extension folder unpacked in Chrome. Step 2, optional: run install.bat (Windows) or install.sh (macOS/Linux) to register the native helper. Step 3: the options page confirms the helper is installed.</desc>
   <rect x="1" y="1" width="878" height="264" rx="18" fill="#ffffff" stroke="#d0d7de" stroke-width="2"/>
   <defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8c959f"/></marker></defs>
   <g font-family="Segoe UI, -apple-system, Helvetica, Arial, sans-serif">
@@ -18,9 +18,9 @@
     <rect x="315" y="30" width="250" height="176" rx="14" fill="#ddf4ff" stroke="#80ccff"/>
     <text x="335" y="60" font-size="13" font-weight="700" fill="#0550ae">2 · HELPER (OPTIONAL)</text>
     <rect x="335" y="76" width="210" height="62" rx="6" fill="#1f2328"/>
-    <text x="347" y="98" font-size="12" fill="#7ee787" font-family="Consolas, monospace">&gt; install.bat</text>
+    <text x="347" y="98" font-size="12" fill="#7ee787" font-family="Consolas, monospace">&gt; install.bat <tspan fill="#8b949e">or</tspan> .sh</text>
     <text x="347" y="118" font-size="12" fill="#c9d1d9" font-family="Consolas, monospace">Helper installed</text>
-    <text x="335" y="166" font-size="12.5" fill="#0550ae">Windows only · current user,</text>
+    <text x="335" y="166" font-size="12.5" fill="#0550ae">Windows, macOS, Linux · current user,</text>
     <text x="335" y="182" font-size="12.5" fill="#0550ae">no admin rights needed</text>
 
     <!-- Step 3 -->
